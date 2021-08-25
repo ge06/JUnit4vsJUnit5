@@ -60,8 +60,15 @@ public static void assertEquals(long expected, long actual, Supplier messageSupp
             throw new IOException(
                        "We interrupt this test to throw an checked exception");
         });
+     }
 ```
-
+- Aynı şekilde timeout kontrolu de, @Test(timeout = 10), assertTimeout şeklinde değiştirildi.
+```
+    @Test
+    public void testFailWithTimeout() throws InterrptedException{
+        Assertions.assertTimeout(Duration.ofMiilis, () -> Thread.sleep(100); 
+    }   
+```
 
 ## Assumptions
 
@@ -78,8 +85,19 @@ public static void assertEquals(long expected, long actual, Supplier messageSupp
 ### JUnit 5
 - JUnit 5 ile, bu varsayımların sayısı düşürülmüştür ve 3 adet varsayım vardır. Ayrıca bu metodları org.junit.jupiter.api.Assumptions içerir hale gelmiştir.
   * assumeFalse()
-  * assumingThat​()
+  * assumingThat()
   * assumeTrue()
+
+- Ayrıca metodlar overload edilebilir olup, gerektiğinde yapılması istenen operasyonlar lambda formunda parametre olarak verilebilir.
+
+```
+@Test
+void testSomething() throws Exception{
+  Assumptions.assumingThat("foo".equals("bar"),() ->{
+    assertEquals(...);
+  })
+}
+```
 
 ## Test Suite
 
@@ -103,7 +121,7 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.platform.suite.api.SelectPackages;
 import org.junit.runner.RunWith;
  
-@RunWith(JUnitPlatform.class)
+@ExtendWith(JUnitPlatform.class)
 @SelectPackages("com.howtodoinjava.junit5.examples")
 public class JUnit5Example 
 {
@@ -114,3 +132,28 @@ public class JUnit5Example
 - JUnit 4, üçüncü parti yazılımlar için herhangi bir destek içermeyip, bunu Java Reflection ile sağlanmaya çalışılıyordu.
 
 - JUnit 5 bu amaçla içerdiği JUnit platform ile TestEngine API kullanarak herhangi bir frameworkun çalışmasını destekler.
+
+## Ek Olarak
+
+### Parameterized Tests
+
+- Parameterized Test, JUnit 4'de çeşitli kütüphaneler ile sağlansa da, JUnit 5 ile tamamen built-in bir hale gelmiştir.
+```
+@ParameterizedTest
+@ValueSource(strings = {"foo", "bar"})
+@NullAndEmptySource
+void myParameterizedTest(String arg){
+  underTest.performAction(arg);
+}
+```
+### Conditional Test Execution
+
+- JUnit 5 ile ExecutionCondition API, testleri koşulsal olarak etkinleşirebilir veya devre dışı bırakabilir.
+  <br></br>
+  * @EnabledOnOs ve @DisabledOnOs: Yalnızca belirtilen işletim sistemlerinde bir testi etkinleştirir.
+  <br></br>
+  * @EnabledOnJre ve @DisabledOnJre: Java'nın belirli sürümleri için testin etkinleştirilmesi veya devre dışı bırakılması gerektiğini belirtir.
+    <br></br>
+  * @EnabledIfSystemProperty: JVM sistem özelliğinin değerine dayalı bir testi etkinleştirir.
+  <br></br>
+  * @EnabledIf: Komut dosyasıyla yazılan koşulların karşılanıp karşılanmadığını bir testi etkinleştirmek için komut dosyası mantığı kullanır.
