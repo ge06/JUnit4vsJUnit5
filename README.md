@@ -8,7 +8,7 @@
 
 - @TestFactory : Metodun dinamik test olduğunu belirtir.
 - @Nested : Test sınıfı içerisinde nested sınıflar tanımlamamıza imkan sağlar.
-- @ExtendWith : İsteğe bağlı class veya package eklemek için kullanılır. ****
+- @ExtendWith : İsteğe bağlı class veya package eklemek için kullanılır. 
 
 
 
@@ -76,7 +76,7 @@ public static void assertEquals(long expected, long actual, Supplier messageSupp
 
 
 ### JUnit 5
-- JUnit 5 ile, bu varsayımların düşürülmüştür ve 3 adet varsayım vardır. Ayrıca bu metodları org.junit.jupiter.api.Assumptions içerir hale gelmiştir.
+- JUnit 5 ile, bu varsayımların sayısı düşürülmüştür ve 3 adet varsayım vardır. Ayrıca bu metodları org.junit.jupiter.api.Assumptions içerir hale gelmiştir.
   * assumeFalse()
   * assumingThat​()
   * assumeTrue()
@@ -111,6 +111,6 @@ public class JUnit5Example
 ```
 ##  Üçüncü Parti Entegrasyonu
 
-- JUnit 4, üçüncü parti yazılımlar için herhangi bir destek içermeyip, bu Java Reflection ile sağlanmaya çalışılıyordu.
+- JUnit 4, üçüncü parti yazılımlar için herhangi bir destek içermeyip, bunu Java Reflection ile sağlanmaya çalışılıyordu.
 
 - JUnit 5 bu amaçla içerdiği JUnit platform ile TestEngine API kullanarak herhangi bir frameworkun çalışmasını destekler.
