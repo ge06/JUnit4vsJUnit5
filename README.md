@@ -115,7 +115,7 @@ public class JUnit4Example
 {
 }
 ```
-- JUnit 5 ile Suite yerini SelectPackages ve SelectClasses almıştır. Bu Single Responsibility açısından faydalıdır. Ayrıca @RunWith anotasyonunun parametresi JUnitPlatform.class olarak değişmiştir.
+- JUnit 5 ile Suite yerini SelectPackages ve SelectClasses almıştır. Bu Single Responsibility açısından faydalıdır. Ayrıca @RunWith anotasyonunun yerini @ExtendWith almış ve parametresi JUnitPlatform.class olarak değişmiştir.
 ```
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.platform.suite.api.SelectPackages;
