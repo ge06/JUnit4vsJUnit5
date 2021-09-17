@@ -16,16 +16,6 @@
 - Varsayılan olarak hem JUnit 4 hem JUnit 5 için metodlar static olarak tanımlanmalıdır, ancak JUnit 5 @TestInstance(TestInstance.Lifecycle.PER_CLASS) anotasyonu kullanarak static kullanımının zorunluluğunu kaldırabiliyoruz.
 
 
-## Mimari
-
-- JUnit 4, her şeyi tek bir jar dosyayı altında toplamıştı, bu durum JUnit 5 için farklıdır.
-<br></br>
-- JUnit 5, 3 alt elementten oluşur;
-  * JUnit Platform : Platformda çalışan yeni test ortamlarını geliştirmek için TestEngine API tanımlar.
-  * JUnit Jupiter : JUnit anotasyonlarını içerip, bu anotasyonlarla yazılmış testleri çalıştırmak için TestEngine implementasyonlarını içerir.
-  * JUnit Vintage : JUnit 5 platformunda JUnit 3 ve JUnit 4 yazılı testlerinin çalıştırılmasını sağlar.
-<br></br>
-- JUnit 4 Java5 veya üzeri için iken, JUnit 5 Java8 veya üzeri içindir.
 
 ## Assertions
 
@@ -127,6 +117,18 @@ public class JUnit5Example
 {
 }
 ```
+
+## Mimari
+
+- JUnit 4, her şeyi tek bir jar dosyayı altında toplamıştı, bu durum JUnit 5 için farklıdır.
+<br></br>
+- JUnit 5, 3 alt elementten oluşur;
+  * JUnit Platform : Platformda çalışan yeni test ortamlarını geliştirmek için TestEngine API tanımlar.
+  * JUnit Jupiter : JUnit anotasyonlarını içerip, bu anotasyonlarla yazılmış testleri çalıştırmak için TestEngine implementasyonlarını içerir.
+  * JUnit Vintage : JUnit 5 platformunda JUnit 3 ve JUnit 4 yazılı testlerinin çalıştırılmasını sağlar.
+<br></br>
+- JUnit 4 Java5 veya üzeri için iken, JUnit 5 Java8 veya üzeri içindir.
+
 ##  Üçüncü Parti Entegrasyonu
 
 - JUnit 4, üçüncü parti yazılımlar için herhangi bir destek içermeyip, bunu Java Reflection ile sağlanmaya çalışılıyordu.
